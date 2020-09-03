@@ -15,6 +15,7 @@ function createParentAndChildrenSets(data){
     let currentParentAndChild = currentValue.split("/");
 
     //if there is a child in the currentValue string
+    //first value is always the parent, second value is always the child
     if (currentParentAndChild.length > 1) {
       parentSet.add(currentParentAndChild[0]);
       childrenSet.add(currentParentAndChild[1]);
@@ -29,20 +30,19 @@ function createParentChildrenObjectArray(parentChildrenSets){
   let childrenSet = parentChildrenSets[1];
   let result =[]
 
-
   parentSet.forEach(function (currentParent) {
-    let newParentObject = {
+    let newParentChildrenObject = {
       title: currentParent,
       data: []
     };
 
     childrenSet.forEach(function (currentChild) {
       if (currentChild.includes(currentParent)) {
-        newParentObject.data.push(currentChild);
+        newParentChildrenObject.data.push(currentChild);
       }
     })
 
-    result.push(newParentObject);
+    result.push(newParentChildrenObject);
   })
 
   return result;
