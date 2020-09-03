@@ -1,9 +1,9 @@
 function createMenuData(data) {
   //separate the data to create one set for parents and another set for children
-  let parentAndChildrenArray = createParentAndChildrenSets(data);
+  let parentAndChildrenSets = createParentAndChildrenSets(data);
 
   //use the parent and children sets to create an array of parent-children objects
-  return createParentChildrenObjectArray(parentAndChildrenArray);
+  return createParentChildrenObjectArray(parentAndChildrenSets);
 }
 
 //helper functions
@@ -14,7 +14,7 @@ function createParentAndChildrenSets(data){
   data.forEach(function (currentValue) {
     let currentParentAndChild = currentValue.split("/");
 
-    //if there is a child in the currentValue string
+    //if there is a child present in the currentParentAndChild array
     //first value is always the parent, second value is always the child
     if (currentParentAndChild.length > 1) {
       parentSet.add(currentParentAndChild[0]);
@@ -43,7 +43,7 @@ function createParentChildrenObjectArray(parentChildrenSets){
     })
 
     result.push(newParentChildrenObject);
-  })
+  });
 
   return result;
 }
